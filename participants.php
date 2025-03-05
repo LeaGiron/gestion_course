@@ -2,17 +2,20 @@
 // Inclure la connexion à la base de données
 require 'connexion-bdd.php';
 
+
 // Récupérer les participants confirmés avec leurs informations d'inscription
 $query = $pdo->query("
-    SELECT p.part_id, p.part_nom, p.part_prenom, i.inscr_id, i.cour_id
+    SELECT p.part_id, p.part_nom, p.part_prenom, i.inscr_id
     FROM participants p
     JOIN inscriptions i ON p.part_id = i.part_id
-    WHERE i.inscr_statut = 'confirmée'
+    WHERE i.inscr_statut = 'confirmé'
 ");
+
 
 // Récupérer tous les participants confirmés dans un tableau
 $participants = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,11 +26,12 @@ $participants = $query->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-        <header>
-            <h1>Liste des participants inscrits et confirmés</h1>
-        </header>
-        
     <div class="liste-participants">
+        <header>
+            <h1>Liste des Participants Confirmés</h1>
+        </header>
+
+
         <section>
             <table border="1">
                 <thead>
@@ -43,7 +47,7 @@ $participants = $query->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
                                 <td><?= $participant['part_nom'] ?></td>
                                 <td><?= $participant['part_prenom'] ?></td>
-                                <td><?= $participant['inscr_id'] ?></td>
+                                <td><?= $participant['inscr_course'] ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -53,12 +57,6 @@ $participants = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </tbody>
             </table>
-        </section>
-
-        <section>
-            <a href="index.html">
-                <button>Retour à l'accueil</button>
-            </a>
         </section>
     </div>
 </body>
