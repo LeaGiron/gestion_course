@@ -24,10 +24,18 @@ $participants = $query->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<div class="page-container">
+<header>
+    <div class="conteneur">
+      <h1>Course de la Ville 2025</h1>
+      <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+    </div>
+</header>
+
+<div class="content">
     <div class="liste-participants">
-        <header>
             <h1>Liste des Participants Confirmés</h1>
-        </header>
 
             <table border="1">
                 <thead>
@@ -53,8 +61,13 @@ $participants = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif; ?>
                 </tbody>
             </table>
-
-            <a href="index.html" class="bouton">Revenir à la page d'accueil</a>
     </div>
+                    </div>
+
+    <footer>
+        <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+    </footer>
+                    </div>
+
 </body>
 </html>
