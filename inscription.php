@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<header>
+    <div class="conteneur">
+      <h1>Course de la Ville 2025</h1>
+      <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+    </div>
+</header>
+
   <div class="page-inscription">
     <h1>Inscription à la course</h1>
     <form action="traitement-inscription.php" method="POST">
@@ -35,6 +43,11 @@
       <button type="submit" class="btn">S'inscrire</button>
     </form>
   </div>
+
+  <footer>
+    <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+  </footer>
+
 </body>
 </html>
 
