@@ -56,11 +56,21 @@ try {
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<header>
+        <div class="conteneur">
+          <h1>Course de la Ville 2025</h1>
+          <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+        </div>
+      </header>
+
   <div class="tableau-de-bord container">
-    <header>
-      <h1>Bienvenue sur votre tableau de bord, Organisateur</h1>
-      <a href="deconnexion.php" class="bouton-deconnexion">Se déconnecter</a>
-    </header>
+
+    <div class="tableau-de-bord-header">
+        <h1>Bienvenue sur votre tableau de bord, Organisateur</h1>
+        <a href="deconnexion.php" class="bouton-deconnexion">Déconnexion</a>
+    </div>
+
 
     <!-- Section des participants à accepter -->
     <section class="participants-a-accepter">
@@ -134,5 +144,10 @@ try {
       </ul>
     </section>
   </div>
+
+  <footer>
+        <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+    </footer>
+    
 </body>
 </html>
