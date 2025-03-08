@@ -57,12 +57,12 @@ try {
 </head>
 <body>
 
-<header>
-        <div class="conteneur">
-          <h1>Course de la Ville 2025</h1>
+    <header>
+      <div class="conteneur">
+        <h1>Course de la Ville 2025</h1>
           <a href="index.html" class="bouton-connexion">Page d'accueil</a>
-        </div>
-      </header>
+      </div>
+    </header>
 
   <div class="tableau-de-bord container">
 
@@ -86,7 +86,6 @@ try {
               <form action="accepter-participant.php" method="POST">
                 <input type="hidden" name="participant_id" value="<?= $participant['part_id'] ?>">
                 <button type="submit" name="action" value="accepter">Accepter</button>
-                <button type="submit" name="action" value="annuler">Annuler</button>
               </form>
             </li>
           <?php endforeach; ?>
@@ -107,12 +106,21 @@ try {
               <p><strong>Nom :</strong> <?= htmlspecialchars($participant['part_nom']) ?> <?= htmlspecialchars($participant['part_prenom']) ?></p>
               <p><strong>Course :</strong> <?= htmlspecialchars($participant['course']) ?></p>
               <p><strong>Email :</strong> <?= htmlspecialchars($participant['part_email']) ?></p>
-              <form action="modifier-participant.php" method="POST">
-                <input type="hidden" name="participant_id" value="<?= $participant['part_id'] ?>">
-                <button type="submit" name="action" value="modifier">Modifier les informations</button>
-                <button type="submit" name="action" value="confirmer">Confirmer l'inscription</button>
-                <button type="submit" name="action" value="annuler">Annuler l'inscription</button>
-              </form>
+
+            <div style="display: flex; justify-content: flex-start; gap: 10px;">
+                <!-- Formulaire pour modifier les informations -->
+                <form action="modifier-participant.php" method="POST">
+                    <input type="hidden" name="participant_id" value="<?= htmlspecialchars($participant['part_id']) ?>">
+                    <a href="modifier-participant.php?participant_id=<?= $participant['part_id'] ?>" class="modifier-bouton">Modifier les informations</a>
+                </form>
+
+                <!-- Formulaire pour annuler l'inscription -->
+                <form action="annuler-participant.php" method="POST">
+                    <input type="hidden" name="participant_id" value="<?= htmlspecialchars($participant['part_id']) ?>">
+                    <button type="submit" name="action" value="annuler" class="btn-annuler">Annuler l'inscription</button>
+                </form>
+            </div>
+
             </li>
           <?php endforeach; ?>
         <?php else: ?>
