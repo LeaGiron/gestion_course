@@ -2,11 +2,11 @@
   <h1 style="color: #F56D8C;">🌸 Gestion de Course - Projet de fin de BTS SIO 🌸</h1>
   <p style="color: #EC9DA9;">
 
-## 🤍 Description
+# 🤍 Description
 
 Ce projet de gestion de course à pied a été développé dans le cadre de mon projet de fin de BTS Services Informatiques aux Organisations (BTS SIO) option SLAM (Solutions Logicielles et Applications Métiers). Il permet aux participants de s'inscrire à une course et aux organisateurs de gérer les inscriptions et les informations liées à la course.
 
-### 🤍 Fonctionnalités principales :
+## 🤍 Fonctionnalités principales :
 - **Inscription des participants** : Les utilisateurs peuvent s'inscrire à la course en choisissant leur catégorie de distance (5 km, 10 km, 15 km).
 - **Gestion des participants** : Les organisateurs peuvent consulter et gérer les informations des participants.
 - **Base de données relationnelle** : Toutes les informations des participants et de la course sont stockées et gérées via une base de données MySQL dans PHPMyAdmin.
@@ -25,9 +25,9 @@ Ce projet de gestion de course à pied a été développé dans le cadre de mon 
 - **Base de données** : MySQL (géré via PHPMyAdmin)
 - **Versioning** : Git (si utilisé)
 
-## 🤍 Installation
+# 🤍 Installation
 
-### 🤍 Prérequis
+## 🤍 Prérequis
 - PHP >= 7.4
 - Serveur Apache (ou tout autre serveur compatible avec PHP)
 - PHPMyAdmin pour la gestion de la base de données
