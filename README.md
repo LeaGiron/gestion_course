@@ -1,6 +1,12 @@
-<div align="center">
-  <h1 style="color: #F56D8C;">🌸 Gestion de Course - Projet de fin de BTS SIO 🌸</h1>
+  <div align="center">
+  <h1 style="color: #F56D8C;">🌸 Gestion de Course 🌸</h1>
   <p style="color: #EC9DA9;">
+  <p>
+    Un projet scolaire de fin de BTS SIO option SLAM : gestion de course en HTML, CSS, PHP et MySQL
+  </p>
+</div>
+
+---
 
 # 🤍 Description
 
