@@ -44,5 +44,5 @@ Ce projet de gestion de course à pied a été développé dans le cadre de mon 
 #### 🤍 Étapes d'installation
 1. **Clonez ce repository** :
    ```bash
-   git clone https://github.com/mon-compte/gestion-course.git
-   cd gestion-course
+   git clone https://github.com/mon-compte/gestion_course.git
+   cd gestion_course
