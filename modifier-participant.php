@@ -22,12 +22,42 @@ if (isset($_GET['participant_id'])) {
             echo "Participant introuvable.";
             exit;
         }
+
     } catch (PDOException $e) {
         die("Erreur : " . $e->getMessage());
     }
 } else {
     echo "Aucun participant sélectionné.";
     exit;
+}
+
+// Validation de l'email et traitement du formulaire
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST['part_email']; 
+
+    // Validation de l'email avec une expression régulière
+    if (!preg_match("/^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i", $email)) {
+        $email_error = "L'email est invalide (format email.test@domaine.fr attendu).";
+    } else {
+        // Mise à jour des informations dans la base de données si l'email est valide
+        $part_nom = $_POST['part_nom'];
+        $part_prenom = $_POST['part_prenom'];
+        $part_date_de_naissance = $_POST['part_date_de_naissance'];
+        $part_telephone = $_POST['part_telephone'];
+
+        try {
+            // Mise à jour dans la base de données
+            $stmt = $pdo->prepare("UPDATE participants SET part_nom = ?, part_prenom = ?, part_date_de_naissance = ?, part_email = ?, part_telephone = ? WHERE part_id = ?");
+            $stmt->execute([$part_nom, $part_prenom, $part_date_de_naissance, $email, $part_telephone, $participant_id]);
+
+            // Rediriger vers le tableau de bord
+            header("Location: tableau-de-bord.php"); 
+            exit;
+
+        } catch (PDOException $e) {
+            die("Erreur : " . $e->getMessage());
+        }
+    }
 }
 ?>
 
@@ -41,17 +71,17 @@ if (isset($_GET['participant_id'])) {
 </head>
 <body>
 
-    <header>
-      <div class="conteneur">
-        <h1>Course de la Ville 2025</h1>
-          <a href="index.html" class="bouton-connexion">Page d'accueil</a>
-      </div>
-    </header>
+<header>
+  <div class="conteneur">
+    <h1>Course de la Ville 2025</h1>
+    <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+  </div>
+</header>
 
 <div class="formulaire">
     <h1>Modifier les informations du participant</h1>
     <!-- Formulaire pour modifier les informations -->
-    <form action="traitement-modifier-participant.php" method="POST">
+    <form action="" method="POST">
         <input type="hidden" name="participant_id" value="<?= htmlspecialchars($participant['part_id']) ?>">
 
         <label for="part_nom">Nom :</label>
@@ -65,18 +95,19 @@ if (isset($_GET['participant_id'])) {
 
         <label for="part_email">Email :</label>
         <input type="email" id="part_email" name="part_email" value="<?= htmlspecialchars($participant['part_email']) ?>" required>
+        
+        <?php if (isset($email_error)) { echo "<p style='color: red;'>$email_error</p>"; } ?>
 
         <label for="part_telephone">Téléphone :</label>
         <input type="tel" id="part_telephone" name="part_telephone" value="<?= htmlspecialchars($participant['part_telephone']) ?>" required>
 
         <button type="submit">Sauvegarder les modifications</button>
     </form>
-
 </div>
 
-    <footer>
-        <p class="footer-texte">&copy; 2025 Course de la Ville</p>
-    </footer>
+<footer>
+    <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+</footer>
 
 </body>
 </html>
