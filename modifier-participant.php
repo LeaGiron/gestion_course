@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="part_email">Email :</label>
         <input type="email" id="part_email" name="part_email" value="<?= htmlspecialchars($participant['part_email']) ?>" required>
         
-        <?php if (isset($email_error)) { echo "<p style='color: red;'>$email_error</p>"; } ?>
+        <?php if (isset($email_error)) { echo "<p>$email_error</p>"; } ?>
 
         <label for="part_telephone">Téléphone :</label>
         <input type="tel" id="part_telephone" name="part_telephone" value="<?= htmlspecialchars($participant['part_telephone']) ?>" required>
