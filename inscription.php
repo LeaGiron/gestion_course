@@ -8,6 +8,17 @@
 </head>
 <body>
 
+<?php
+session_start();
+
+// Si des erreurs existent en session, on les récupère
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']); 
+}
+?>
+
+
 <header>
     <div class="conteneur">
       <h1>Course de la Ville 2025</h1>
@@ -15,7 +26,7 @@
     </div>
 </header>
 
-  <div class="page-inscription">
+  <div class="formulaire">
     <h1>Inscription à la course</h1>
     <form action="traitement-inscription.php" method="POST">
       <label for="nom">Nom :</label>
@@ -29,6 +40,7 @@
 
       <label for="email">Email :</label>
       <input type="email" id="email" name="email" required placeholder="Votre email" />
+      <?php if (isset($errors['email'])) {echo "<p>" . $errors['email'] . "</p>";}?>
 
       <label for="telephone">Numéro de téléphone :</label>
       <input type="tel" id="telephone" name="telephone" required placeholder="Votre numéro de téléphone" />
