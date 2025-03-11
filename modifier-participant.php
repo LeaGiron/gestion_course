@@ -31,29 +31,36 @@ if (isset($_GET['participant_id'])) {
     exit;
 }
 
-// Validation de l'email et traitement du formulaire
+// Initialisation du tableau d'erreurs
+$errors = [];
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['part_email']; 
+    $part_telephone = $_POST['part_telephone'];
 
-    // Validation de l'email avec une expression régulière
+    // Validation de l'email
     if (!preg_match("/^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i", $email)) {
-        $email_error = "L'email est invalide (format email.test@domaine.fr attendu).";
-    } else {
-        // Mise à jour des informations dans la base de données si l'email est valide
+        $errors['email'] = "L'email est invalide (format email.test@domaine.fr attendu).";
+    }
+
+    // Validation du numéro de téléphone (10 chiffres requis)
+    if (!preg_match('/^\d{10}$/', $part_telephone)) {
+        $errors['telephone'] = "Le numéro de téléphone doit contenir exactement 10 chiffres.";
+    }
+
+    // Si aucune erreur, mise à jour des informations
+    if (empty($errors)) {
         $part_nom = $_POST['part_nom'];
         $part_prenom = $_POST['part_prenom'];
         $part_date_de_naissance = $_POST['part_date_de_naissance'];
-        $part_telephone = $_POST['part_telephone'];
 
         try {
-            // Mise à jour dans la base de données
             $stmt = $pdo->prepare("UPDATE participants SET part_nom = ?, part_prenom = ?, part_date_de_naissance = ?, part_email = ?, part_telephone = ? WHERE part_id = ?");
             $stmt->execute([$part_nom, $part_prenom, $part_date_de_naissance, $email, $part_telephone, $participant_id]);
 
             // Rediriger vers le tableau de bord
             header("Location: tableau-de-bord.php"); 
             exit;
-
         } catch (PDOException $e) {
             die("Erreur : " . $e->getMessage());
         }
@@ -95,11 +102,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <label for="part_email">Email :</label>
         <input type="email" id="part_email" name="part_email" value="<?= htmlspecialchars($participant['part_email']) ?>" required>
-        
-        <?php if (isset($email_error)) { echo "<p>$email_error</p>"; } ?>
+        <?php if (isset($errors['email'])) { echo "<p>{$errors['email']}</p>"; } ?>
 
         <label for="part_telephone">Téléphone :</label>
         <input type="tel" id="part_telephone" name="part_telephone" value="<?= htmlspecialchars($participant['part_telephone']) ?>" required>
+        <?php if (isset($errors['telephone'])) { echo "<p>{$errors['telephone']}</p>"; } ?>
 
         <button type="submit">Sauvegarder les modifications</button>
     </form>
