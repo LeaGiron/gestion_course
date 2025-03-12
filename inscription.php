@@ -14,7 +14,7 @@ session_start();
 // Si des erreurs existent en session, on les récupère
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
-    unset($_SESSION['errors']); 
+    unset($_SESSION['errors']); // Supprime les erreurs après les avoir affichées
 }
 ?>
 
@@ -44,6 +44,7 @@ if (isset($_SESSION['errors'])) {
 
       <label for="telephone">Numéro de téléphone :</label>
       <input type="tel" id="telephone" name="telephone" required placeholder="Votre numéro de téléphone" />
+      <?php if (isset($errors['telephone'])) { echo "<p>{$errors['telephone']}</p>"; } ?>
 
       <label for="course">Choisissez une course :</label>
       <select id="course" name="course" required>
