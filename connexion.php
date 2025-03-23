@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
         } catch (PDOException $e) {
-            // On peut loguer l'erreur sans l'afficher à l'utilisateur
         }
     }
     echo "<p>Email ou mot de passe incorrect.</p>";
