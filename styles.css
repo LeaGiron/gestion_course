@@ -1,3 +1,5 @@
+  /* CSS du projet de course sportive */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,8 +7,11 @@
   }
   
   html, body {
-    height: 100%;
-  }
+    height: 100%; 
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
   
   body {
     font-family: 'Roboto', sans-serif;
@@ -17,6 +22,7 @@
     flex-direction: column;
   }
   
+    /* Page d'accueil */
   .conteneur {
     width: 90%;
     max-width: 1200px;
@@ -26,7 +32,7 @@
   header {
     background-color: #56C0A1;
     color: #fff;
-    padding: 20px 0;
+    padding: 20px 20px;
   }
   
   header .conteneur {
@@ -36,7 +42,7 @@
   }
   
   header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .bouton {
@@ -58,7 +64,7 @@
     display: inline-block;
     background-color: #fff;
     color: #56C0A1;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
@@ -140,17 +146,39 @@
     padding: 8px 0;
     text-align: center;
   }
+    
+  footer {
+    width: 100%;                
+    background-color: #56C0A1;
+    color: #fff;
+    text-align: center;
+  }
+  footer p.footer-texte {
+    margin: 0;                 
+    padding: 10px;              
+    color: #fff;
+    text-align: center;
+    font-size: 1rem;
+  }
   
   /* Page de connexion */
   .page-connexion {
     background-color: #fff;
-    padding: 70px;
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     max-width: 400px;
-    margin: 50px auto;
+    width: 90%; 
+    margin: auto; 
     text-align: center;
-  }
+    flex-grow: 0;
+    max-height: 500px; 
+    overflow: auto;
+}
+
+  .page-connexion {
+    flex: 1; 
+}
   
   .page-connexion h1 {
     font-size: 2rem;
@@ -201,18 +229,17 @@
     margin: 50px auto;
     padding: 20px;
   }
-  
-  .tableau-de-bord header {
+
+  .tableau-de-bord-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    margin-bottom: 25px;
   }
   
-  .tableau-de-bord header h1 {
-    font-size: 2rem;
-    color: white;
-    margin-left: 10px;
+  .tableau-de-bord h1 {
+    color: #4CAF50;
+    margin: 0;
   }
   
   .bouton-deconnexion {
@@ -294,6 +321,19 @@
     transition: background-color 0.3s ease;
     font-size: 0.9rem;
   }
+
+a.modifier-bouton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #fff;
+}
+
   
   /* Boutons d'action dans les formulaires */
   .tableau-de-bord form button[name="action"][value="accepter"],
@@ -302,54 +342,51 @@
     color: #fff;
   }
   
-  .tableau-de-bord form button[name="action"][value="accepter"]:hover,
-  .tableau-de-bord form button[name="action"][value="confirmer"]:hover {
-    background-color: #45a049;
-  }
-  
   .tableau-de-bord form button[name="action"][value="annuler"] {
     background-color: #f44336;
     color: #fff;
   }
-  
-  .tableau-de-bord form button[name="action"][value="annuler"]:hover {
-    background-color: #d32f2f;
+
+  .tableau-de-bord form button[name="action"][value="restaurer"] {
+    background-color: gray;
+    color: #fff;
   }
-  
-  /* Page d'inscription */
-  .page-inscription {
+
+  /* Page modifier les informations d'un participant et la page d'inscription*/
+  .formulaire {
+    max-width: 900px; 
+    width: 90%;
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin: 50px auto;
+    margin: 20px auto;
     text-align: center;
   }
   
-  .page-inscription h1 {
+  .formulaire h1 {
     font-size: 2rem;
     color: #4CAF50;
     margin-bottom: 20px;
   }
   
-  .page-inscription form {
+  .formulaire form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     text-align: left;
   }
   
-  .page-inscription label {
+  .formulaire label {
     font-size: 1.1rem;
     margin-bottom: 5px;
   }
   
-  .page-inscription input[type="text"],
-  .page-inscription input[type="date"],
-  .page-inscription input[type="email"],
-  .page-inscription input[type="tel"],
-  .page-inscription select {
+  .formulaire input[type="text"],
+  .formulaire input[type="date"],
+  .formulaire input[type="email"],
+  .formulaire input[type="tel"],
+  .formulaire select {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -357,7 +394,7 @@
     width: 100%;
   }
   
-  .page-inscription button {
+  .formulaire button {
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -369,31 +406,32 @@
     margin-top: 10px;
   }
   
-  .page-inscription button:hover {
+  .formulaire button:hover {
     background-color: #45a049;
   }
+
   
   /* Style de la page des participants */
   .liste-participants {
-    max-width: 900px;
+    max-width: 1200px; 
+    width: 90%;
     margin: 50px auto;
-    background: #fff;
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
-  
+
   .liste-participants h1 {
-    color: white;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    color: #4CAF50
   }
-  
-  .liste-participants h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .content {
+    flex: 1;
   }
   
   table {
@@ -403,6 +441,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
   }
   
   th, td {
@@ -419,158 +458,156 @@
   tr:nth-child(even) {
     background: #f9f9f9;
   }
-  
-  
-  footer {
-    background-color: #56C0A1;
+
+  .liste-participants .bouton {
+    display: inline-block;
+    background-color: #4CAF50;
     color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+  }
+  
+  .liste-participants .bouton:hover {
+    background-color: #45a049;
+  }
+  
+
+  
+/* Media Queries pour la réactivité */
+
+/* Pour les petits écrans (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Page de connexion */
+  .page-connexion {
+    padding: 20px;
+    margin: 20px;
+  }
+  .page-connexion h1 {
+    font-size: 1.75rem;
+  }
+  .page-connexion input[type="email"],
+  .page-connexion input[type="password"] {
+    font-size: 0.9rem;
+  }
+
+  /* Boutons */
+  .bouton {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  /* Tableau de bord */
+  .tableau-de-bord header h1 {
+    font-size: 1.5rem;
+  }
+  .tableau-de-bord form button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  /* Page d'inscription */
+  .page-inscription {
+    padding: 20px;
+    margin: 20px;
+  }
+  .page-inscription h1 {
+    font-size: 1.75rem;
+  }
+  .page-inscription input[type="text"],
+  .page-inscription input[type="date"],
+  .page-inscription input[type="email"],
+  .page-inscription input[type="tel"],
+  .page-inscription select {
+    font-size: 0.9rem;
+  }
+}
+
+/* Pour les écrans moyens (max-width: 768px) */
+@media (max-width: 768px) {
+  header .conteneur {
+    flex-direction: column;
     text-align: center;
-    padding: 20px 0;
   }
-  
-  footer p {
-    color: #fff;
+  header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .intro h2 {
+    font-size: 2rem;
+  }
+  .a_propos h3,
+  .programme h3,
+  .contact h3 {
+    font-size: 1.75rem;
+  }
+  p, ul li {
+    font-size: 1rem;
+  }
+  .bouton-groupe {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Tableau de bord */
+  .tableau-de-bord {
+    width: 95%;
+    margin: 20px auto;
+  }
+  .tableau-de-bord header {
+    flex-direction: column;
     text-align: center;
   }
-  
-  /* Media Queries pour la réactivité */
-  @media (max-width: 480px) {
-    .page-connexion {
-      padding: 20px;
-      margin: 20px;
-    }
-  
-    .page-connexion h1 {
-      font-size: 1.75rem;
-    }
-  
-    .page-connexion input[type="email"],
-    .page-connexion input[type="password"] {
-      font-size: 0.9rem;
-    }
+  .tableau-de-bord header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
   }
-  
-  @media (max-width: 768px) {
-    header .conteneur {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    header h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-  
-    .intro h2 {
-      font-size: 2rem;
-    }
-  
-    .a_propos h3,
-    .programme h3,
-    .contact h3 {
-      font-size: 1.75rem;
-    }
-  
-    p, ul li {
-      font-size: 1rem;
-    }
-  
-    .bouton-groupe {
-      flex-direction: column;
-      gap: 10px;
-    }
+  .tableau-de-bord form {
+    flex-direction: column;
+    gap: 5px;
   }
-  
-  @media (max-width: 480px) {
-    header h1 {
-      font-size: 1.8rem;
-    }
-  
-    .bouton {
-      padding: 8px 16px;
-      font-size: 0.9rem;
-    }
-  
-    section {
-      padding: 20px;
-    }
+}
+
+/* Pour les petits à moyens écrans (max-width: 600px) */
+@media (max-width: 600px) {
+  table {
+    font-size: 0.9rem;
   }
-  
-  @media (max-width: 480px) {
-    .page-connexion {
-      padding: 20px;
-      margin: 20px;
-    }
-  
-    .page-connexion h1 {
-      font-size: 1.75rem;
-    }
-  
-    .page-connexion input[type="email"],
-    .page-connexion input[type="password"] {
-      font-size: 0.9rem;
-    }
+  .liste-participants {
+    max-width: 95%;
+    padding: 20px;
   }
-  
-  @media (max-width: 768px) {
-    .tableau-de-bord {
-      width: 95%;
-      margin: 20px auto;
-    }
-  
-    .tableau-de-bord header {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .tableau-de-bord header h1 {
-      font-size: 1.75rem;
-      margin-bottom: 10px;
-    }
-  
-    .tableau-de-bord form {
-      flex-direction: column;
-      gap: 5px;
-    }
+}
+
+/* Pour les grands écrans (max-width: 1024px) */
+@media (max-width: 1024px) {
+  header .conteneur {
+    flex-direction: row;
+    justify-content: space-between;
   }
-  
-  @media (max-width: 480px) {
-    .tableau-de-bord header h1 {
-      font-size: 1.5rem;
-    }
-  
-    .tableau-de-bord form button {
-      padding: 6px 10px;
-      font-size: 0.8rem;
-    }
+  header h1 {
+    font-size: 2.5rem;
   }
-  
-  @media (max-width: 480px) {
-    .page-inscription {
-      padding: 20px;
-      margin: 20px;
-    }
-  
-    .page-inscription h1 {
-      font-size: 1.75rem;
-    }
-  
-    .page-inscription input[type="text"],
-    .page-inscription input[type="date"],
-    .page-inscription input[type="email"],
-    .page-inscription input[type="tel"],
-    .page-inscription select {
-      font-size: 0.9rem;
-    }
+
+  .intro h2 {
+    font-size: 2.5rem;
   }
-  
-  @media (max-width: 600px) { 
-  table { 
-  font-size: 0.9rem; 
-  } 
-  .liste-participants { 
-  max-width: 95%; 
-  padding: 20px; 
-  } 
+  .a_propos h3,
+  .programme h3,
+  .contact h3 {
+    font-size: 2rem;
   }
+  .bouton-groupe {
+    flex-direction: row;
+    gap: 15px;
+  }
+}
+
   

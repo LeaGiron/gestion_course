@@ -7,7 +7,26 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page-inscription">
+
+<?php
+session_start();
+
+// Si des erreurs existent en session, on les récupère
+if (isset($_SESSION['errors'])) {
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']); // Supprime les erreurs après les avoir affichées
+}
+?>
+
+
+<header>
+    <div class="conteneur">
+      <h1>Course de la Ville 2025</h1>
+      <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+    </div>
+</header>
+
+  <div class="formulaire">
     <h1>Inscription à la course</h1>
     <form action="traitement-inscription.php" method="POST">
       <label for="nom">Nom :</label>
@@ -21,9 +40,11 @@
 
       <label for="email">Email :</label>
       <input type="email" id="email" name="email" required placeholder="Votre email" />
+      <?php if (isset($errors['email'])) {echo "<p>" . $errors['email'] . "</p>";}?>
 
       <label for="telephone">Numéro de téléphone :</label>
       <input type="tel" id="telephone" name="telephone" required placeholder="Votre numéro de téléphone" />
+      <?php if (isset($errors['telephone'])) { echo "<p>{$errors['telephone']}</p>"; } ?>
 
       <label for="course">Choisissez une course :</label>
       <select id="course" name="course" required>
@@ -35,6 +56,10 @@
       <button type="submit" class="btn">S'inscrire</button>
     </form>
   </div>
+
+  <footer>
+    <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+  </footer>
+
 </body>
 </html>
-
