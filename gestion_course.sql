@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 08 mars 2025 à 19:46
+-- Généré le : dim. 23 mars 2025 à 16:00
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -62,12 +62,11 @@ CREATE TABLE `inscriptions` (
 --
 
 INSERT INTO `inscriptions` (`inscr_id`, `cour_id`, `part_id`, `inscr_date`, `inscr_statut`) VALUES
-(1, 1, 1, '2025-02-25 00:00:00', 'en attente'),
-(2, 2, 2, '2025-02-25 00:00:00', 'annulée'),
+(2, 2, 2, '2025-02-25 00:00:00', 'confirmée'),
 (3, 3, 3, '2025-02-25 00:00:00', 'confirmée'),
-(4, 1, 4, '2025-02-25 00:00:00', 'confirmée'),
+(4, 1, 4, '2025-02-25 00:00:00', 'annulée'),
 (5, 2, 5, '2025-02-25 00:00:00', 'confirmée'),
-(15, 1, 50, '2025-03-07 11:42:30', 'confirmée');
+(17, 3, 52, '2025-03-10 19:35:27', 'en attente');
 
 -- --------------------------------------------------------
 
@@ -115,12 +114,11 @@ CREATE TABLE `participants` (
 --
 
 INSERT INTO `participants` (`part_id`, `part_nom`, `part_prenom`, `part_date_de_naissance`, `part_email`, `part_telephone`) VALUES
-(1, 'Garnier', 'Jean', '1990-05-12', 'jean.garnier@email.fr', '0612345678'),
 (2, 'Martin', 'Sophie', '1985-09-25', 'sophie.martin@email.com', '0698765432'),
 (3, 'Bernard', 'Lucas', '1998-07-15', 'lucas.bernard@email.com', '0678456123'),
 (4, 'Leroy', 'Emma', '2000-03-30', 'emma.leroy@email.com', '0654321897'),
 (5, 'Morel', 'Thomas', '1995-11-22', 'thomas.morel@email.com', '0645678932'),
-(50, 'Test', 'Lea', '2001-01-01', 'lea.g@test.com', '0123456789');
+(52, 'Test', 'Adrien', '1999-05-02', 'adrien@test.com', '0654723879');
 
 --
 -- Index pour les tables déchargées
@@ -168,7 +166,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT pour la table `inscriptions`
 --
 ALTER TABLE `inscriptions`
-  MODIFY `inscr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `inscr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `organisateurs`
@@ -180,7 +178,7 @@ ALTER TABLE `organisateurs`
 -- AUTO_INCREMENT pour la table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `part_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `part_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Contraintes pour les tables déchargées
