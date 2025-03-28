@@ -41,8 +41,8 @@ Ce projet de gestion de course à pied a été développé dans le cadre de mon 
 - PHPMyAdmin pour la gestion de la base de données
 - MySQL
 
-#### 🤍 Étapes d'installation
-1. **Clonez ce repository** :
-   ```bash
-   git clone https://github.com/mon-compte/gestion_course.git
-   cd gestion_course
+  ---
+
+### 💗 Licence
+
+Tous droits réservés. Ce projet, y compris tous ses fichiers, est protégé par le droit d'auteur. Toute reproduction, distribution, modification, ou utilisation des fichiers, en tout ou en partie, sans autorisation préalable, est strictement interdite. En cas de besoin, contactez-moi directement pour obtenir les droits nécessaires.
