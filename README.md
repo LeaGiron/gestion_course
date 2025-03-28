@@ -16,10 +16,10 @@ Ce projet de gestion de course à pied a été développé dans le cadre de mon 
 - **Inscription des participants** : Les utilisateurs peuvent s'inscrire à la course en choisissant leur catégorie de distance (5 km, 10 km, 15 km).
 - **Gestion des participants** : Les organisateurs peuvent consulter et gérer les informations des participants.
 - **Base de données relationnelle** : Toutes les informations des participants et de la course sont stockées et gérées via une base de données MySQL dans PHPMyAdmin.
-- **Interface simple et responsive** : Une interface web est fournie avec une conception responsive pour s'assurer que le site fonctionne correctement sur tous les appareils (ordinateurs, tablettes, téléphones).
+- **Interface simple et responsive** : Une interface web est fournie avec une conception responsive pour s'assurer que le site fonctionne correctement sur différents navigateurs.
 
 ### 💗 Objectifs du projet
-- **Créer une plateforme de gestion des inscriptions à une course.**
+- **Créer une plateforme de gestion des inscriptions à une course fonctionnelle.**
 - **Mettre en place une base de données pour stocker les informations des participants et de la course.**
 - **Développer une interface web en HTML et CSS.**
 - **Utiliser PHP pour la gestion de la logique métier et des interactions avec la base de données.**
@@ -30,8 +30,6 @@ Ce projet de gestion de course à pied a été développé dans le cadre de mon 
 - **Backend** : PHP
 - **Base de données** : MySQL (géré via PHPMyAdmin)
 - **Versioning** : Git 
-
-  ---
 
 ### 💗 Licence
 
