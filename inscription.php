@@ -11,6 +11,11 @@
 <?php
 session_start();
 
+// Générer un jeton CSRF
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Si des erreurs existent en session, on les récupère
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
@@ -29,6 +34,9 @@ if (isset($_SESSION['errors'])) {
   <div class="formulaire">
     <h1>Inscription à la course</h1>
     <form action="traitement-inscription.php" method="POST">
+      <!-- Champ CSRF -->
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
+
       <label for="nom">Nom :</label>
       <input type="text" id="nom" name="nom" required placeholder="Votre nom" />
 

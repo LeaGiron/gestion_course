@@ -2,10 +2,20 @@
 session_start();
 require 'connexion-bdd.php'; // Connexion à la base de données
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: connexion.php");
     exit;
+}
+
+// Vérification du jeton CSRF dans le formulaire
+if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("Tentative de CSRF détectée.");
 }
 
 // Vérifier si l'ID du participant a été envoyé

@@ -2,6 +2,11 @@
 session_start();
 require 'connexion-bdd.php';
 
+// Générer un token CSRF s'il n'existe pas déjà
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: connexion.php");
@@ -35,6 +40,12 @@ if (isset($_GET['participant_id'])) {
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // Vérifier si le token CSRF est valide
+    if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur : Token CSRF invalide.");
+    }
+
     $email = $_POST['part_email']; 
     $part_telephone = $_POST['part_telephone'];
 
@@ -87,6 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="formulaire">
     <h1>Modifier les informations du participant</h1>
+
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+
     <!-- Formulaire pour modifier les informations -->
     <form action="" method="POST">
         <input type="hidden" name="participant_id" value="<?= htmlspecialchars($participant['part_id']) ?>">

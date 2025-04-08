@@ -8,6 +8,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["participant_id"])) {
+    
+    // Vérification de la validité du jeton CSRF
+    if (!isset($_SESSION['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur CSRF : jeton invalide.");
+    }
+    
     $participant_id = $_POST["participant_id"];
 
     try {

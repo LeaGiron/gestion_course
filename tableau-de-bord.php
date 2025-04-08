@@ -8,6 +8,16 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Vérification du jeton CSRF
+if (isset($_POST['csrf_token']) && $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+  die("Tentative de CSRF détectée.");
+}
+
+// Générer un nouveau jeton CSRF si nécessaire
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 try {
     // Récupérer les participants en attente d'approbation
     $stmt = $pdo->prepare("
@@ -85,6 +95,7 @@ try {
               <p><strong>Email :</strong> <?= htmlspecialchars($participant['part_email']) ?></p>
               <form action="accepter-participant.php" method="POST">
                 <input type="hidden" name="participant_id" value="<?= $participant['part_id'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <button type="submit" name="action" value="accepter">Accepter</button>
               </form>
             </li>
@@ -117,6 +128,7 @@ try {
                 <!-- Formulaire pour annuler l'inscription -->
                 <form action="annuler-participant.php" method="POST">
                     <input type="hidden" name="participant_id" value="<?= htmlspecialchars($participant['part_id']) ?>">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                     <button type="submit" name="action" value="annuler" class="btn-annuler">Annuler l'inscription</button>
                 </form>
             </div>
@@ -142,6 +154,7 @@ try {
               <p><strong>Email :</strong> <?= htmlspecialchars($participant['part_email']) ?></p>
               <form action="restaurer-participant.php" method="POST">
                 <input type="hidden" name="participant_id" value="<?= $participant['part_id'] ?>">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                 <button type="submit" name="action" value="restaurer">Restaurer l'inscription</button>
               </form>
             </li>

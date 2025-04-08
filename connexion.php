@@ -2,7 +2,13 @@
 session_start();
 require 'connexion-bdd.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Vérification du token CSRF
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur CSRF : jeton invalide.");
+    }
+
+    // Récupération des informations de connexion
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
 
@@ -18,8 +24,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
         } catch (PDOException $e) {
+            // Gestion des erreurs de base de données
         }
     }
     echo "<p>Email ou mot de passe incorrect.</p>";
 }
+
+// Générer un jeton CSRF si nécessaire
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="conteneur">
+          <h1>Course de la Ville 2025</h1>
+          <a href="index.html" class="bouton-connexion">Page d'accueil</a>
+        </div>
+    </header>
+
+    <div class="page-connexion">
+        <h1>Connectez-vous</h1>
+        <form action="connexion.php" method="POST">
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Champ caché pour le token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <footer>
+        <p class="footer-texte">&copy; 2025 Course de la Ville</p>
+    </footer>
+
+</body>
+</html>

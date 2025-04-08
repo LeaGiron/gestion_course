@@ -5,13 +5,24 @@ require 'connexion-bdd.php';
 // Initialisation du tableau des erreurs
 $errors = [];
 
+// Générer un jeton CSRF si nécessaire
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Vérification si les données sont bien envoyées
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nom = trim($_POST["nom"]);
-    $prenom = trim($_POST["prenom"]);
+
+        // Vérification du jeton CSRF
+        if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("Tentative de CSRF détectée.");
+        }
+
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
     $date_de_naissance = $_POST["date_de_naissance"];
-    $email = trim($_POST["email"]);
-    $telephone = trim($_POST["telephone"]);
+    $email = $_POST["email"];
+    $telephone = $_POST["telephone"];
     $course = $_POST["course"];
 
     // Validation de l'email

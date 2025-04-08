@@ -2,6 +2,12 @@
 // Inclure la connexion à la base de données
 require 'connexion-bdd.php';
 
+// Générer un token CSRF s'il n'existe pas déjà
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+
 // Récupérer les participants confirmés avec leurs informations d'inscription
 $query = $pdo->query("
     SELECT p.part_id, p.part_nom, p.part_prenom, i.inscr_id, c.cour_distance
